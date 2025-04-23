@@ -1,0 +1,6 @@
+pandas
+numpy
+PyPDF2
+pikepdf
+dash
+pdfplumber
