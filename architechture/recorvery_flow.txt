@@ -1,0 +1,29 @@
+[Start Application]
+        |
+        v
+[Check if config.yaml exists]
+        |
+        +--> [Yes] -- Load config.yaml
+        |            |
+        |            v
+        |    [Check if local DB exists]
+        |            |
+        |            +--> [Yes] -- Connect to DB
+        |            |
+        |            +--> [No] -- Search Google Drive for backup
+        |                          |
+        |                          +--> [Backup Found] -- Download and Connect
+        |                          |
+        |                          +--> [Backup Not Found] -- Prompt to create new DB
+        |
+        +--> [No] -- Prompt user:
+                     [Setup New DB] or [Restore from Backup]
+                            |
+                            +--> [Setup New DB] -- Create DB and config.yaml
+                            |
+                            +--> [Restore from Backup] -- Authenticate Google Drive
+                                                           Search for backup
+                                                           |
+                                                           +--> [Backup Found] -- Download and Connect
+                                                           |
+                                                           +--> [Backup Not Found] -- Prompt to create new DB

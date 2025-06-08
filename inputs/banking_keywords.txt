@@ -1,0 +1,25 @@
+Transfer : transfer, ecs, p2p, transaction, sip, emi, neft, rtgs, transfer, ach, gpay, imps, atm, upi, refund, exp, expense
+Income : muzigal, salary, isha fees, gaorisin fees, arnavmoi fees, arnav moitra fees, intpd, remitlyi, abhishek fees
+Loan : loan, cred, creditcard, cc
+Rent : rent
+Subscription : furlenco, nobroker, urbanclap, furniture, newspaper, netflix
+Bills : airtel, recharge, internet, fibernet, livpures, electric, bescom, maid, water
+Maintainence : clean, cleaning, plumber
+HomeAccesories : kitchen, extra, home, wire, light, hardware
+Shopping : ekart, flipkart, LOGISTICS, urbancompany
+Personal : haircut, parlour, personal, music, entertainment, movie, father
+Apparels : cloth, shoes, dress, spectacles
+Tour : tour, makemytrip, royalbrother
+Incidental : unseen, donate, Chrgs
+Medical : apollo, healthcare, pharma, medicine, lab, medplus
+Other : other, beer, beverage
+Transport : petrol, fuel, energy, bike, fare, rapido, auto, uber, ola, transport, cab, yulu
+Puja : puja
+Pets : bird
+Wife : wife
+Tea : cold, coffee, tea, icecream, ice cream
+Food : bakery, food, snacks, cake, cafe, bhikharamchandmala
+Office Food : hungerbox
+Grocery : zepto, dmart, bigbasket, grocery, blinkit, fruits, instamart
+Restaurant : pizza, swiggy, bundltechnologies, zomato, shadowfax technologies, restaurant, kfc, imperial, newudupi
+Investment : rd, investment, angelone, angelbroking, zerodhabroking, angelltd, dividend, embassy

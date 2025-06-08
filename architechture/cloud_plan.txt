@@ -1,0 +1,43 @@
+Cloud-based Expense Manager:
+1. Free / Low-cost Database options (good for small personal apps)
+
+Database	Free Tier?
+-- Google Cloud SQL (PostgreSQL/MySQL)	$300 credit for first year, then paid	Scalable RDBMS	Easy if you're already using Google Drive
+-- Supabase (PostgreSQL)	YES, free up to 500MB DB / 1GB file storage	RDBMS + Realtime	Super easy setup, best for apps
+-- Firebase (Firestore DB)	YES, generous free tier	NoSQL (Documents)	More suitable for unstructured apps, but a bit overkill here
+-- Railway.app (PostgreSQL)	YES, free up to 500MB	Easy hosting + DB	Very fast for quick apps
+-- PlanetScale (MySQL)	YES, free up to 5GB	Global scale DB	Very modern, but no JOINs (for free tier)
+✅ My suggestion for you: Supabase or Railway → easiest + free.
+
+2. Where to Host Your App (Cloud Hosting options)
+Hosting Option	Free?	Best for	Notes
+-- Render.com	YES, free Web Service	Python webapps, scheduled jobs	Simple to deploy Flask/FastAPI apps
+-- Railway.app	YES, deploy web + db together	Fastest prototype	Less control if you need deep backend settings
+-- Google Cloud Run	Limited free tier	Serverless app hosting	Good, but needs Docker knowledge
+-- Vercel	YES, for frontends (Next.js) + small backends	Web UI	Best if you plan a dashboard UI
+-- Fly.io	YES, generous free credits	Deploy apps close to user	Slightly more DevOps needed
+✅ For you: Render.com or Railway.app is easiest for backend hosting.
+
+🏗️ Cloud-Based Final Architecture
+plaintext
+
+[User uploads statements (App UI)]
+        ↓
+App triggers parsing + storage
+        ↓
+Parse PDF, extract transactions
+        ↓
+Store clean data in Supabase (PostgreSQL)
+        ↓
+Scheduler (Cloud Cron Jobs or Scheduled Task)
+        ↓
+Update dashboards 3x a day (10AM/4PM/8PM)
+        ↓
+Dashboard (could be in Streamlit/FastAPI + ChartJS)
+🌟 Very simple stack for your case:
+
+Part	Technology
+App backend	Python (FastAPI)
+Database	Supabase (PostgreSQL Free Tier)
+Hosting	Render.com Free Web Service
+Dashboard	Streamlit (or lightweight frontend)

@@ -1,0 +1,2 @@
+Remember :
+1. Change the .env file as per Operating system

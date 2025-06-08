@@ -1,0 +1,46 @@
+        +-------------------------------+
+        |          User Interface        |
+        |  (Python .exe App, Tkinter GUI) |
+        +---------------+---------------+
+                        |
+                        v
+        +---------------+---------------+
+        |       Input Layer (Ingestion)   |
+        |                                 |
+        |  - Upload Statement Manually    |
+        |  - Read from Google Drive Folder|
+        +---------------+---------------+
+                        |
+                        v
+        +---------------+---------------+
+        |        Parsing & Processing     |
+        |   (PDF to DataFrame Extraction) |
+        +---------------+---------------+
+                        |
+                        v
+        +---------------+---------------+
+        |         Database Layer          |
+        |    (SQLite DB stored in User's   |
+        |    Cloud Synced Folder like      |
+        |    Google Drive/OneDrive)        |
+        +---------------+---------------+
+                        |
+          +-------------+-------------+
+          |                           |
+          v                           v
++----------------+         +-------------------------+
+| Scheduler      |         | Backup Manager           |
+| - 10AM Refresh |         | - After every update     |
+| - 4PM Refresh  |         | - Upload latest DB       |
+| - 8PM Refresh  |         | - To Google Drive Backup |
++----------------+         +-------------------------+
+          |                           |
+          v                           v
++-----------------+         +-------------------------+
+| Dashboard Layer |         | Recovery Layer           |
+| - Show Expenses |         | - On App Launch:         |
+| - Trends, Graphs|         | - If config.yaml missing |
+| - Reports       |         | - Restore DB from Backup |
++-----------------+         +-------------------------+
+
+          (Config.yaml - holds db_path, scheduler info)
