@@ -20,3 +20,4 @@ pypdf
 streamlit
 gspread
 gspread_dataframe
+tqdm
