@@ -2,6 +2,7 @@ from concurrent.futures import ProcessPoolExecutor
 from tqdm import tqdm
 from typing import List
 import os, shutil
+import platform
 
 def parallel_apply_process(df, func, column, max_workers=8):
     with ProcessPoolExecutor(max_workers=max_workers) as executor:
@@ -12,7 +13,7 @@ def get_file_nm_list(items:List):
     set_nm = []
     if items:
         for nm in items:
-            split_nm = nm.split('/')[-1]
+            split_nm = os.path.basename(nm)
             set_nm.append(split_nm)
         return set_nm
     return items
