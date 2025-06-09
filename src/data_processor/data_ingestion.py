@@ -1,4 +1,4 @@
-import re
+import re,os
 import pandas as pd
 from pathlib import Path
 from typing import Union
@@ -132,7 +132,7 @@ class DataOrchestrator:
         Returns:
             pd.DataFrame: Final cleaned and standardized DataFrame.
         """
-        file_nm = self.src_file_path.split('/')[-1]
+        file_nm = os.path.basename(self.src_file_path)
         logger.info(f'Data Extraction for file : |`{file_nm}`|.......')
         logger.debug(f'Temp File Dir: {self.src_file_path}')
         data_processor_obj = DataProcessor(file_dir=self.src_file_path)
