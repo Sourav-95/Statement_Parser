@@ -1,5 +1,7 @@
 import os
 from typing import List
+import time
+import gc
 from src.components.env_cred_loader import get_credential_path
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -76,7 +78,7 @@ def upload_or_update_file_to_gdrive(data, gdrive_folder_id, new_file_name):
         pageSize=1
     ).execute()
     files = results.get('files', [])
-
+    logger.info(f'Checking Files:{files}')
     media = MediaFileUpload(new_file_name)
 
     try:
@@ -94,7 +96,7 @@ def upload_or_update_file_to_gdrive(data, gdrive_folder_id, new_file_name):
                 'application/zip',
                 # add more as needed
             ]
-
+            logger.info(f'Checking Mime Type: {mime_type}')
             if mime_type in binary_mime_types:
                 logger.info(f"File '{existing_file['name']}' exists as binary type '{mime_type}'. Skipping upload/update.")
                 return  # Skip upload/update for binary files
@@ -118,10 +120,19 @@ def upload_or_update_file_to_gdrive(data, gdrive_folder_id, new_file_name):
                 fields='id'
             ).execute()
             logger.info(f"Uploaded new file ID: {new_file.get('id')}")
-    finally:
-        if os.path.exists(new_file_name):
+    except Exception as e:
+        logger.error(f'Error occured while updating/uploading the backup file :{e}')
+    
+    # Deleting Delta Backup file from local
+    media = None    
+    gc.collect()        # Force Garbage Collection
+    time.sleep(2)
+    if os.path.exists(new_file_name):
+        try:
             os.remove(new_file_name)
             logger.debug(f"Deleted local file: {new_file_name}")
+        except Exception as e:
+            logger.error(f'Error occured while deleting Backup file from Local: {e}')
 
 def delete_file_from_gdrive(file_name: str, folder_id: str):
     """
