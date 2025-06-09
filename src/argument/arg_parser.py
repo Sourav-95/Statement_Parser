@@ -28,11 +28,11 @@ def parse_and_store_args():
         with open(CONFIG_FILE, 'w') as f:
             yaml.dump(to_save, f)
 
-        logger.info("✅ Arguments saved and reset.")
+        logger.info("Arguments saved and reset.")
         return to_save
 
     # Load saved arguments if not resetting
     with open(CONFIG_FILE, 'r') as f:
         saved_args = yaml.safe_load(f)
-        logger.info("✅ Loaded saved arguments.")
+        logger.info("Loaded saved arguments.")
         return saved_args

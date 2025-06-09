@@ -48,7 +48,7 @@ class GoogleDriveFolderManager:
                 logger.warning(f'No files found in the folder : `{folder_id}`')
                 break
 
-            logger.info(f' 🗂️   Scanning Folder ID: `{folder_id}`')
+            logger.info(f'Scanning Folder ID: `{folder_id}`')
             page_token = response.get('nextPageToken')
             if not page_token:
                 break

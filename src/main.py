@@ -90,21 +90,23 @@ def main():
         # Create DeltaHandler instance
         handler = DB_DeltaHandler(db_name=DBConstants.DB_PATH, metadata_table=DBConstants.LOAD_STATUS_TABLE)
 
-        # # Load data with delta logic; this will also check & create the table if needed
-        # handler.load_delta(df, expected_columns=DBConstants.TRANSACTION_T_COLS, 
-        #                 bank_name=bank_name, target_table=DBConstants.TRANSACTION_TABLE)
+        # Load data with delta logic; this will also check & create the table if needed
+        handler.load_delta(df, expected_columns=DBConstants.TRANSACTION_T_COLS, 
+                        bank_name=bank_name, target_table=DBConstants.TRANSACTION_TABLE)
         
-        _, _, gsheet_client = GoogleOAuth2Service.initialize_auth_service_built()
+        # _, _, gsheet_client = GoogleOAuth2Service.initialize_auth_service_built()
 
-        handler.load_delta_gsheet(parsed_df=parsed_df, 
-                                  expected_columns=DBConstants.TRANSACTION_T_COLS,
-                                  bank_name=bank_name,
-                                  sheet_id = '1peLXC2y0RcY6iBEd6X8dp_BHDSAx11tP7Ewrpkn_e34',
-                                  gsheet_client=gsheet_client)
+        # handler.load_delta_gsheet(parsed_df=parsed_df, 
+        #                           expected_columns=DBConstants.TRANSACTION_T_COLS,
+        #                           bank_name=bank_name,
+        #                           sheet_id = '1peLXC2y0RcY6iBEd6X8dp_BHDSAx11tP7Ewrpkn_e34',
+        #                           gsheet_client=gsheet_client)
         
         # Remove the source file from directory after processing
         delete_file_from_gdrive(file_name=file_list_nm[idx], folder_id=SRC_FOLDER_ID)
-        logger.info(f'----------------------------------------------------------------------------------------------')
+
+        logger.info(f'---------------------------------------------------------------------------------')
+        
         idx = idx +1
     # Removing the temp directory after Operation
     delete_temp_dir = remove_temp_dir(temp_dir)

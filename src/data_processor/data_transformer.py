@@ -2,8 +2,6 @@ import pandas as pd
 import re
 from typing import Dict, Set, List
 import nltk
-from wordsegment import load, segment
-import wordninja
 from tqdm import tqdm
 import logging
 from spellchecker import SpellChecker

@@ -123,7 +123,7 @@ class GoogleOAuth2Service:
             authenticator = GoogleAuthenticator(scopes=all_scopes)
             
             creds = authenticator.authenticate()
-            logger.info(" 🔐 Google API Connection authenticated successfully.")
+            logger.info("Google API Connection authenticated successfully.")
         
             drive_service = authenticator.build_service(service_name=GoogleAuthConstants.GDRIVE_SERVICE_NAME,
                                                              version=GoogleAuthConstants.GDRIVE_VERSION, creds=creds
@@ -133,7 +133,7 @@ class GoogleOAuth2Service:
                                                              )
             gspread_client = gspread.authorize(creds)
             
-            logger.info(" 🛜 Google API services built successfully.\n")
+            logger.info("Google API services built successfully.\n")
             return drive_service, gmail_service, gspread_client
         except Exception as e:
             logger.error(f"Failed to authenticate Google API service: {e}\n")
