@@ -94,3 +94,7 @@ venv\Scripts\activate  # (Windows)
 
 ### 2: Install dependencies
 pip install -r requirements.txt
+
+### 3. Trigger
+```bash
+python -m src.main --src_Drive "SOURCE_FOLDER_ID" --backup "BACKUP_FOLDER_ID"
