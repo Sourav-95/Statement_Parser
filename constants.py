@@ -23,20 +23,21 @@ class GoogleAuthConstants:
 
 class DataParserConstants:
 
-    # Constants for DataParser
+    # Constants for DataParser (Do not change.)
     TABLE_SETTING = {"vertical_strategy": "lines",
                                   "horizontal_strategy": "text",
                                   "intersection_tolerance": 15,
                                   "join_tolerance": 20,
                                   }
-    
+    # Observ you header and mention 
     HEADER_CLEANER_CONDITIONS = ['OPENING BALANCE', 'transaction total', 'closing balance', 'From']
 
-    # Stopwords
+    # Stopwords (Observe and mention - Optional)
     REMOVED_ENGLISH_WORDS = {
-        'sour', 'mum', 'sourav', 'mir', 'septexp', 'pm', 'pa', 'pos', 'remitter'
+        'sour', 'mir', 'septexp', 'pm', 'pa', 'pos', 'remitter'
     }
 
+    # which you do not want in stopwords
     DISCARD_STOPWORD = ['other', 'others']
 
     # Add the list of column patterns dictionary if came accross new account statement
@@ -49,12 +50,11 @@ class DataParserConstants:
     }
 
     BANKING_KEYWORD_URL = Path("./inputs/banking_keywords.txt")
-    # '/Users/souravm/Documents/Projects/statement_parser/src/components/banking_keywords.txt'
 
 # Set Database Inputs as Constant
 class DBConstants:
     
-    # DB_PATH = Path("database/bank_transactions.db")
+    # Enter you path of Database (Even if 1st run will create automatically)
     DB_PATH = Path("G:/DATABASE/bank_transactions.db")
 
     TRANSACTION_TABLE = "TRANSACTION_T"
