@@ -27,6 +27,9 @@ Please **ensure the following files and configurations are in place** before exe
 5. ✅ **Environment File**  
    Ensure your `.env` file (in the project root) points to correct `auth_connection` paths and Drive API settings.
 
+6. ✅ **constants.py (Optional)**  
+   Ensure your all constants are correct according to the `platform` and logic. Change if required. 
+
 ---
 
 ## ⚙️ Argument Parser: Inputs During Trigger
