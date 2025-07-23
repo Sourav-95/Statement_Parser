@@ -1,0 +1,13 @@
+Transfer : transfer, ecs, p2p, transaction, sip, neft, rtgs, transfer, ach, gpay, imps, atm, atw, upi, refund, exp, expense
+Office : salary, <company_name_hit_bank_account>
+InvestmentReturn : intpd, refund, interestpaidtill, dividend
+Loan : loan, cred, creditcard, cc, emi
+Rent : rent
+Bills : airtel, recharge, internet, fibernet, livpures, electric, bescom, maid, water, mobile, furlenco, nobroker, furniture, newspaper, netflix, GOOGLEPLAYSERCYBSS
+HomeAccesories : kitchen, extra, home, wire, light, hardware, ekart, flipkart, LOGISTICS, clean, cleaning, plumber, urbancompany, urbanclap
+Apparels : cloth, shoes, dress, spectacles
+Medical : apollo, healthcare, pharma, medicine, lab, medplus, pharmeasy, cloudnine
+Transport : petrol, fuel, energy, bike, fare, rapido, auto, uber, ola, transport, cab
+Grocery : zepto, dmart, bigbasket, grocery, blinkit, fruits, instamart
+Restaurant : pizza, swiggy, bundltechnologies, zomato, shadowfax technologies, restaurant
+Investment : investment
