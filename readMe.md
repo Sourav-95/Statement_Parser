@@ -2,6 +2,11 @@
 
 This Python-based modular system automates the ingestion, transformation, and analysis of financial statements. It supports reading bank PDFs, transforming them into structured data, storing in a local SQLite database, and backing up to Google Drive. A GUI and scheduling capability are also available.
 
+## ⚠️ Better Working Condition
+1. If you use UPI, try to add notes while doing the transaction
+2. If you use NEFT/IMPS, try to add remarks while doing the transaction
+*** these notes/remarkes are then mapped ***
+
 ---
 
 ## ⚠️ Important Prerequisites Before Running
