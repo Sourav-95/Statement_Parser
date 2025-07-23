@@ -1,0 +1,55 @@
+Things to note / maintain before running the program other wise may result in failure. 
+1. Inputs to be re-checked on the file - "./inputs/saved_args.yaml"
+2. Custom Keywords categorization file to contain resources as per your preference
+        "./inputs/banking_keywords.txt"
+3. If any of your PDF (Source file) is password encrypted. Please provide here in the key file. 
+        "./inputs/passwords.yaml"
+4. Credentials.json file to be downloaded from GCP account (Developer) and placed in the root with structure as
+        "./auth_connection/Credentials.json"
+5. Re-check the .env file on root of the module with proper links to auth_connection files.
+
+
+        +--------------------------------+
+        |          Argument Parser       |
+        |- Input Argument during trigger |
+        |      --src_Drive, --backup     |
+        +---------------+----------------+
+                        |
+                        v
+        +---------------+-----------------+
+        |       Input Layer (Ingestion)   |
+        |                                 |
+        |  - Upload Statement Manually    |
+        |  - Read from Google Drive Folder|
+        +---------------+-----------------+
+                        |
+                        v
+        +---------------+-----------------+
+        |          Data Extraction        |
+        |   (PDF to DataFrame Extraction) |
+        +---------------+-----------------+
+                        |
+                        v
+        +---------------+-----------------+            +------------------------------+
+        |        Data Transformation      |            |    Data Backup to GDrive     |
+        |       - Feature Engineering     |______\     |                              |
+        |       - Data Modelling          |      /     +------------------------------+   
+        +---------------+-----------------+            
+                        |
+                        v
+        +---------------+------------------+
+        |         Database Layer           |
+        |    (SQLite DB stored in User's   |
+        |    Cloud Synced Folder like      |            +--------------------------------+
+        |    Google Drive/OneDrive)        |________\   |     Delete Source file         |
+        +---------------+------------------+        /   |        & Temp files            |
+                        |                               +--------------------------------+
+          +-------------+-------------+                         
+          |                           |
+          v                           v
++----------------+         +-------------------------+
+| Dashboard Layer|         | Backup Manager           |
+| - Expense Trend|         | - After every update     |
+| - Income Trend |         | - Upload latest DB       |
+| - MoM Graphs   |         | - To Google Drive Backup |
++----------------+         +-------------------------+

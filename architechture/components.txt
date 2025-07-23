@@ -1,0 +1,14 @@
+High-Level Component Breakdown:
+
+---------------------+------------------------------------------------------------+
+Layer	             |     Component                                              |
+---------------------+------------------------------------------------------------+
+🖥️ User Interface	  |     App GUI (.exe app, built in Python + Tkinter / PyQt)
+📂 Input Layer	     |     Upload PDFs manually / Read from Google Drive
+🧹 Parsing Layer	 |     Extract Transactions from PDFs (bank, GPay, PhonePe)
+🗄️ Database Layer	  |     SQLite DB (stored inside user cloud-synced folder)
+📅 Scheduler Layer	 |     Refresh dashboard 10AM/4PM/8PM daily
+📊 Dashboard Layer	 |     Show Expenses Graphs & Reports
+☁️ Backup Layer	     |     Upload latest DB file to Google Drive
+♻️ Recovery Layer	 |     Restore DB automatically if system crashes
+⚙️ Config Management |     Store paths & scheduler info in config.yaml
