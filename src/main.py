@@ -9,6 +9,7 @@ logger = get_logger(name='main', log_level=logging.INFO, log_to_file=True)
 
 from src.gcs_utils.gcs_connection import GoogleOAuth2Service
 from src.gcs_utils.gcs_orchestration import pull_gdrive_data
+from src.data_processor.fetch_src_file import FileFetcher
 from src.data_processor.data_ingestion import DataOrchestrator
 from src.data_processor.data_transformer import DataTransformation
 from src.db_operations.delta_lake import DB_DeltaHandler
@@ -36,7 +37,13 @@ def main():
 
     job_run_date = datetime.date.today()
     try:
+        # Getting Data from GDrive to Temporary working directory
         temp_dir, file_list_nm, file_list_dir = pull_gdrive_data(folder_id=SRC_FOLDER_ID)
+        
+        # Getting Data from Local Source Folder to Temoporary working directory
+        local_temp_dir, local_file_list_nm, local_file_list_dir = FileFetcher.pull_local_file(src_folder='G:\\Statement_Parser\\local_test_src')
+        file_list_nm += local_file_list_nm
+        file_list_dir += local_file_list_dir
     except Exception as e:
         sys.exit(1)
         

@@ -72,7 +72,7 @@ def pull_gdrive_data(folder_id):
     else:
         logger.error(f'No files found in GDrive folderID: {folder_id}')
         logger.error(f'Termination the Program')
-        sys.exit()
+        # sys.exit()
         raise FileNotFoundError
     
 
