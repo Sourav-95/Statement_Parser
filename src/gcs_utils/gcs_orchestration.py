@@ -37,7 +37,6 @@ def pull_gdrive_data(folder_id):
 
     # List all files in the folder
     all_files = manager.list_files(folder_id, page_size=20)
-    logger.info(f"Downloading files...........")
 
     # Download the first file if available
     if all_files:
@@ -71,8 +70,8 @@ def pull_gdrive_data(folder_id):
         return temp_dir, file_nm_to_process, file_to_process
     else:
         logger.error(f'No files found in GDrive folderID: {folder_id}')
-        logger.error(f'Termination the Program')
+        # logger.error(f'Termination the Program')
         # sys.exit()
-        raise FileNotFoundError
+        return None, None, None
     
 
