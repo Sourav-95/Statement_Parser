@@ -6,6 +6,7 @@ class ConstantRetriever:
     
     SCRIPT_BASE = os.path.dirname(os.path.abspath(__file__))
     TEMP_DOWNLOAD_DIR = 'temp'
+    SOURCE_LOCAL_DIR = 'G:\Statement_Parser\source_data'
 
 class GoogleAuthConstants:
 

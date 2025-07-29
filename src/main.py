@@ -18,6 +18,7 @@ from src.gcs_utils.gdrive_operations import upload_or_update_file_to_gdrive
 from src.gcs_utils.gdrive_operations import  delete_file_from_gdrive
 from constants import ConstantRetriever, DBConstants
 from src.db_operations.sql_procedure import SQL_Procedure
+from src.utils.dq_integrity import safe_list
 import datetime
 from dotenv import load_dotenv
 
@@ -36,17 +37,26 @@ def main():
     BACKUP_FOLDER_ID = args['backup']
 
     job_run_date = datetime.date.today()
+    
     try:
-        # Getting Data from GDrive to Temporary working directory
         temp_dir, file_list_nm, file_list_dir = pull_gdrive_data(folder_id=SRC_FOLDER_ID)
-        
-        # Getting Data from Local Source Folder to Temoporary working directory
-        local_temp_dir, local_file_list_nm, local_file_list_dir = FileFetcher.pull_local_file(src_folder='G:\\Statement_Parser\\local_test_src')
-        file_list_nm += local_file_list_nm
-        file_list_dir += local_file_list_dir
+
+        # Flag to check if files are present in GDrive
+        is_present_in_gdrive = len(safe_list(file_list_nm))>0
+
+        # Condition if no files are present in GDrive, then pull from local
+        if not is_present_in_gdrive:
+            temp_dir, local_file_list_nm, local_file_list_dir = FileFetcher.pull_local_file(src_folder=ConstantRetriever.SOURCE_LOCAL_DIR)
+
+            # Append the list of files from both sources
+            file_list_nm = safe_list(file_list_nm) + safe_list(local_file_list_nm)
+            file_list_dir = safe_list(file_list_dir) + safe_list(local_file_list_dir)
+            # temp_dir = safe_list(temp_dir) + safe_list(local_temp_dir)
     except Exception as e:
+        logger.error(f'Error occured while pulling data from Sources: {e}')
+        logger.error(f'Exiting the Program')
         sys.exit(1)
-        
+
     idx = 0
 
     # Data Orchestration Started
@@ -103,29 +113,15 @@ def main():
                         bank_name=bank_name, target_table=DBConstants.TRANSACTION_TABLE)
         
         # Functionality to Update Rows on Database
-
-        ## List of action and wildcard are passed to identify the pattern and replace.
-        ## [ ('<column_to_change>'), ('<condition>')...]
-
         if load_delta_status == 1:
-            SQL_Procedure.trigger_sql_procedure()
-        
-        # SQL Procedure to Transform with Dashboard Logic
-
-        # _, _, gsheet_client = GoogleOAuth2Service.initialize_auth_service_built()
-
-        # handler.load_delta_gsheet(parsed_df=parsed_df, 
-        #                           expected_columns=DBConstants.TRANSACTION_T_COLS,
-        #                           bank_name=bank_name,
-        #                           sheet_id = '1peLXC2y0RcY6iBEd6X8dp_BHDSAx11tP7Ewrpkn_e34',
-        #                           gsheet_client=gsheet_client)
-        
+            SQL_Procedure.trigger_sql_procedure()        
         
         # Remove the source file from gdrive after processing
-        try:
-            delete_file_from_gdrive(file_name=file_list_nm[idx], folder_id=SRC_FOLDER_ID)
-        except Exception as e:
-            logger.error(f'Error Occured while removing SOURCE file - `{file_list_nm[idx]}` from Gdrive: {e}')
+        if is_present_in_gdrive:
+            try:
+                delete_file_from_gdrive(file_name=file_list_nm[idx], folder_id=SRC_FOLDER_ID)
+            except Exception as e:
+                logger.error(f'Error Occured while removing SOURCE file - `{file_list_nm[idx]}` from Gdrive: {e}')
         
         logger.info(f'---------------------------------------------------------------------------------')
         idx = idx +1

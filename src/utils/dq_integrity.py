@@ -66,3 +66,6 @@ class DataIntegrityChecker:
             except OSError as e:
                 logger.error(f"Could not access {file_path}: {e}")
         return file_sizes
+    
+def safe_list(val):
+    return val if isinstance(val, list) else []

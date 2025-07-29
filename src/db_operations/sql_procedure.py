@@ -41,7 +41,10 @@ class SQL_Procedure:
             return -1  # Failure
         
     @classmethod
-    def trigger_sql_procedure():
+    
+    ## List of action and wildcard are passed to identify the pattern and replace.
+    ## [ ('<column_to_change>'), ('<condition>')...]
+    def trigger_sql_procedure(cls):
         try:
             updates = [
                         ('OFFICE FOOD', '%HUNGERBOX%'),
