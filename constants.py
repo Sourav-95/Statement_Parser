@@ -75,3 +75,33 @@ class DBConstants:
         """
     
     TRANSACTION_T_COLS = {"Date", "Particulars", "Credit", "Debit", "Balance", "Bank", "Subcategory", "Category"}
+
+    # Rule to update Subcategory and Category
+    # This can be altered as per your requirement
+    # For example : If 'HUNGERBOX' is found in Particulars, then Subcategory will be 'OFFICE FOOD' and continues as per rules.
+    SUBCATEGORY_PROCEDURE_RULE = [
+                        ('OFFICE FOOD', '%HUNGERBOX%'),
+                        ('OFFICE FOOD', '%Daalchini%'), 
+                        ('FURLENCO', '%Furlenco%'),
+                        ('SWIGGY', '%swiggy%'),
+                        ('GROCERY', '%grocery%'),
+                        ('NEWSPAPER', '%newspa%'),
+                        ('YULU', '%yulu%'),
+                        ('BIKE', '%MOTOR%'),
+                        ('SALARY', '%SALARY%'),
+                        ('GOOGLEPLAY', '%GOOGLEPLAY%'),
+                    ]
+    
+    CATEGORY_PROCEDURE_RULE = [
+                        ('Bills', '%Furlenco%'),
+                        ('Restaurant', '%swiggy%'),
+                        ('Grocery', '%grocery%'),
+                        ('Bills', '%newspa%'),
+                        ('Transport', '%yulu%'),
+                        ('Office', '%SALARY%'),
+                        ('Bills', '%GOOGLEPLAY%'),
+                    ]
+    
+    INVESTMENT_PROCEDURE_RULE = [
+                        ('Investment', 'RD')
+                    ]
