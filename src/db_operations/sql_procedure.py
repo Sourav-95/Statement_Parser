@@ -42,32 +42,12 @@ class SQL_Procedure:
         
     @classmethod
     
-    ## List of action and wildcard are passed to identify the pattern and replace.
-    ## [ ('<column_to_change>'), ('<condition>')...]
+    ## Procedure Rules can be altered.
     def trigger_sql_procedure(cls):
         try:
-            updates = [
-                        ('OFFICE FOOD', '%HUNGERBOX%'),
-                        ('OFFICE FOOD', '%Daalchini%'), 
-                        ('FURLENCO', '%Furlenco%'),
-                        ('SWIGGY', '%swiggy%'),
-                        ('GROCERY', '%grocery%'),
-                        ('NEWSPAPER', '%newspa%'),
-                        ('YULU', '%yulu%'),
-                        ('BIKE', '%MOTOR%')
-                    ]
-            
-            updates2 = [
-                        ('Bills', '%Furlenco%'),
-                        ('Restaurant', '%swiggy%'),
-                        ('Grocery', '%grocery%'),
-                        ('Bills', '%newspa%'),
-                        ('Transport', '%yulu%')
-                    ]
-            
-            investment = [
-                ('Investment', 'RD'),
-            ]
+            updates = DBConstants.SUBCATEGORY_PROCEDURE_RULE
+            updates2 = DBConstants.CATEGORY_PROCEDURE_RULE           
+            investment = DBConstants.INVESTMENT_PROCEDURE_RULE
 
             # Update Row 1
             SQL_Procedure.update_rows(
