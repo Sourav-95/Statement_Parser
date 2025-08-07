@@ -157,7 +157,7 @@ class DB_DeltaHandler:
             parsed_df = parsed_df[parsed_df["Date"] >= last_date]
 
             # Delete existing records for last date
-            logger.info(f'Deleting the existing records for last date')
+            logger.info(f'Deleting the existing records for last date: {last_date} to reload')
             with self.engine.begin() as conn:
                 delete_stmt = text(f"DELETE FROM {target_table} WHERE Date = :last_date AND Bank = :bank_name")
                 conn.execute(delete_stmt, {"last_date": last_date, "bank_name": bank_name})
