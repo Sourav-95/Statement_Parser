@@ -3,7 +3,6 @@ High-Level Component Breakdown:
 ---------------------+------------------------------------------------------------+
 Layer	             |     Component                                              |
 ---------------------+------------------------------------------------------------+
-🖥️ User Interface	  |     App GUI (.exe app, built in Python + Tkinter / PyQt)
 📂 Input Layer	     |     Upload PDFs manually / Read from Google Drive
 🧹 Parsing Layer	 |     Extract Transactions from PDFs (bank, GPay, PhonePe)
 🗄️ Database Layer	  |     SQLite DB (stored inside user cloud-synced folder)
